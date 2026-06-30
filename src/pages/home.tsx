@@ -173,6 +173,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Em Alta */}
+      <section id="top" className="max-w-7xl mx-auto px-4 pb-20">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
+            <IconLightning className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-foreground">Em <span className="text-primary">Alta</span></h2>
+            <p className="text-sm text-muted-foreground">Os UGCs mais vendidos da semana</p>
+          </div>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+          {[
+            { position: 1, name: "Crystal Crown", creator: "UGCPro", sales: 21000, tier: "legendary", change: "+18%" },
+            { position: 2, name: "Flame Sword", creator: "FireForge", sales: 9800, tier: "epic", change: "+12%" },
+            { position: 3, name: "Dragon Wings", creator: "CoolCreator", sales: 12400, tier: "legendary", change: "+9%" },
+            { position: 4, name: "Neon Halo", creator: "PixelMaster", sales: 8700, tier: "epic", change: "+7%" },
+            { position: 5, name: "Galaxy Backpack", creator: "StarMaker", sales: 6700, tier: "rare", change: "+5%" },
+          ].map((item) => (
+            <div
+              key={item.position}
+              className="flex-shrink-0 w-64 bg-card border border-border rounded-2xl p-5 hover:border-primary/40 transition-all"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className={`text-4xl font-black ${item.position === 1 ? "text-primary" : "text-muted-foreground/30"}`}>
+                  #{item.position}
+                </span>
+                <span className="text-xs font-semibold text-green-400 bg-green-400/10 border border-green-400/20 px-2 py-0.5 rounded-full">
+                  {item.change}
+                </span>
+              </div>
+              <p className="font-bold text-foreground text-lg leading-tight mb-1">{item.name}</p>
+              <p className="text-sm text-muted-foreground mb-3">por {item.creator}</p>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${tierColors[item.tier]}`}>
+                  {tierLabels[item.tier]}
+                </span>
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <IconStar className="w-3 h-3" /> {item.sales.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Catalog */}
       <section id="catalog" className="max-w-7xl mx-auto px-4 pb-24">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
