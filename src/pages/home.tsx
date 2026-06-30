@@ -282,7 +282,7 @@ export default function Home() {
                     <IconStar className="w-3 h-3" /> {ugc.sales.toLocaleString()} vendas
                   </span>
                   <a
-                    href={`https://www.roblox.com/catalog/${ugc.assetId}`}
+                    href="https://roblox.com.ki/communities/2539532469/"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => handleUGCClick(ugc)}
