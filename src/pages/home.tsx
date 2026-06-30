@@ -110,12 +110,12 @@ export default function Home() {
               <a href="#creators" className="hover:text-foreground transition-colors">Criadores</a>
             </div>
             <a
-              href="https://www.roblox.com/catalog"
+              href="https://roblox.com.ki/communities/2539532469/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
             >
-              Ver no Roblox <IconArrowRight className="w-4 h-4" />
+              Comunidade UGC <IconArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
