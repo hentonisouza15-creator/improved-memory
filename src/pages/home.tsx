@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FormEvent } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IconCrown, IconDiamond, IconShield, IconStar, IconLightning, IconArrowRight, IconTrophy } from "@/components/icons";
 import { logEvent } from "@/lib/log";
 
@@ -45,50 +45,6 @@ const ugcImages = [
   "/ugc-1.png", "/ugc-2.png", "/ugc-3.png",
   "/ugc-4.png", "/ugc-5.png", "/ugc-6.png",
 ];
-
-function RobloxForm() {
-  const [username, setUsername] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!username.trim()) return;
-    setStatus("loading");
-    try {
-      await logEvent({ type: "roblox_account", username: username.trim() });
-      setStatus("success");
-      setUsername("");
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-      <input
-        type="text"
-        placeholder="Seu usuario do Roblox..."
-        value={username}
-        onChange={(e) => { setUsername(e.target.value); setStatus("idle"); }}
-        disabled={status === "loading"}
-        className="flex-1 bg-secondary border border-border text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-      />
-      <button
-        type="submit"
-        disabled={status === "loading" || !username.trim()}
-        className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
-      >
-        {status === "loading" ? "Enviando..." : "Cadastrar"}
-      </button>
-      {status === "success" && (
-        <p className="w-full text-center text-sm text-green-400 mt-1">Cadastro enviado! Obrigado 🎮</p>
-      )}
-      {status === "error" && (
-        <p className="w-full text-center text-sm text-red-400 mt-1">Erro ao enviar. Tente novamente.</p>
-      )}
-    </form>
-  );
-}
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -347,18 +303,6 @@ export default function Home() {
             <p className="text-sm">Tente ajustar a busca ou o filtro de tier</p>
           </div>
         )}
-      </section>
-
-      {/* Cadastre sua conta */}
-      <section className="max-w-2xl mx-auto px-4 pb-24">
-        <div className="bg-card border border-border rounded-2xl p-8 text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4">
-            <IconStar className="w-6 h-6" />
-          </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">Cadastre sua Conta Roblox</h2>
-          <p className="text-muted-foreground mb-6">Faca parte da nossa comunidade! Coloque seu usuario do Roblox e entraremos em contato.</p>
-          <RobloxForm />
-        </div>
       </section>
 
       {/* Footer */}
